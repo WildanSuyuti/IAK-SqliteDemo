@@ -59,8 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     public Person getPersonById(int id) {
-        DatabaseHandler databaseHandler = new DatabaseHandler(context);
-        SQLiteDatabase db = databaseHandler.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_PERSON, new String[]{KEY_ID, KEY_NAME, KEY_HOBY},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null,
                 null, null, null);
@@ -84,7 +83,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Person person = new Person(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
-        // return contact
         return person;
     }
 
